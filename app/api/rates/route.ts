@@ -47,11 +47,11 @@ function buildCacheKey(
 }
 
 function pruneCache(now: number) {
-  for (const [key, entry] of rateCache.entries()) {
+  rateCache.forEach((entry, key) => {
     if (entry.expiresAt <= now) {
       rateCache.delete(key);
     }
-  }
+  });
 }
 
 async function fetchRates(requestBody: Record<string, unknown>) {
